@@ -1,0 +1,89 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>SGFoodSSAS</Database>
+    <Server>PSCHAART\MSSQLEVALUATION</Server>
+    <ConnectionString>Data Source=PSCHAART\MSSQLEVALUATION;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>kpokJ8+V39YKP9qEHxIVAyv4wbU=9/04/2026 21:59:569/04/2026 21:59:56</TimeStamp>
+        <ID>
+          <String>PSCHAART</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>6w8raxythSZE35bvVfj0rpRN+Oc=9/04/2026 10:35:459/04/2026 10:35:45</TimeStamp>
+        <ID>
+          <String>PSCHAART</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>0rofqoeoR7Y/5RzxqzjOySd7xOw=9/04/2026 10:41:019/04/2026 10:41:01</TimeStamp>
+        <ID>
+          <String>Dim Ubicacion</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Y45VoMNFK2zxL5UR0ax2AoKkd3w=9/04/2026 10:41:019/04/2026 10:41:01</TimeStamp>
+        <ID>
+          <String>Dim Cliente</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>jziZh1Q1ORVG5kIDgFa5RiJfwZw=9/04/2026 10:42:329/04/2026 10:41:01</TimeStamp>
+        <ID>
+          <String>Dim Fecha</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>IcLJqqmVCm9aTwY0CCjrchXPWZ8=9/04/2026 10:41:019/04/2026 10:41:01</TimeStamp>
+        <ID>
+          <String>Dim Canal Venta</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>8Oj8aNqTVfE2xqQ5GiwMAgkmzUI=9/04/2026 10:41:019/04/2026 10:41:01</TimeStamp>
+        <ID>
+          <String>Dim Producto</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>3KAMGH7OairrdUQCPTkmK5etH1o=9/04/2026 10:55:459/04/2026 10:41:01+hSXsQvDrElijGVMLp1kk8QdWRw=9/04/2026 10:41:019/04/2026 10:41:01</TimeStamp>
+        <ID>
+          <String>PSCHAART</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>Cito7v4D42z4LSu0UKdhfvbnLno=9/04/2026 00:10:359/04/2026 00:10:35</TimeStamp>
+      <ID>
+        <String>SGFoodSSAS</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2026-04-10T04:00:15.876667Z</LastDeployed>
+</DeploymentSnapshot>

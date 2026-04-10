@@ -1,0 +1,1022 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/9/2026 12:11:07 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PSCHAART"
+  DTS:CreatorName="PSCHAART\pscha"
+  DTS:DTSID="{00351D83-F2E9-44EF-AB4E-26FDD2473BFE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="4106"
+  DTS:ObjectName="01_Stg_SQL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{45CBB37D-11E8-43A8-9FB2-D89BF4A3AE05}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Cargar_Stg_SQL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{02B6EC3A-BD6F-4EB0-9C11-A2283AAC5778}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Cargar_Stg_SQL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="CM_SQL_Local"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[TransaccionesVenta_SQL]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Connections[OleDbConnection]"
+                  connectionManagerID="{9B41CF8E-8B87-4D95-8F62-9E42678BA487}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[PSCHAART]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[TransaccionId]"
+                      cachedDataType="i8"
+                      cachedName="TransaccionId"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[TransaccionId]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransaccionId]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[FechaTransaccion]"
+                      cachedDataType="dbDate"
+                      cachedName="FechaTransaccion"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[FechaTransaccion]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaTransaccion]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[ClienteId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="ClienteId"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ClienteId]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteId]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[ClienteNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="120"
+                      cachedName="ClienteNombre"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ClienteNombre]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteNombre]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[SegmentoCliente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="SegmentoCliente"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[SegmentoCliente]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[SegmentoCliente]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[CanalVenta]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="CanalVenta"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[CanalVenta]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[CanalVenta]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[Departamento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Departamento"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Departamento]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Departamento]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[Municipio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Municipio"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Municipio]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Municipio]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[ProductoSKU]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ProductoSKU"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ProductoSKU]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoSKU]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[ProductoNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="120"
+                      cachedName="ProductoNombre"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ProductoNombre]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoNombre]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[Marca]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Marca"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Marca]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Marca]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[Categoria]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Categoria"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Categoria]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Categoria]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[Subcategoria]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Subcategoria"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Subcategoria]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Subcategoria]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[Fabricante]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="Fabricante"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Fabricante]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fabricante]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[CantidadVendida]"
+                      cachedDataType="i4"
+                      cachedName="CantidadVendida"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[CantidadVendida]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[CantidadVendida]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[ExistenciaAntesVenta]"
+                      cachedDataType="i4"
+                      cachedName="ExistenciaAntesVenta"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ExistenciaAntesVenta]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExistenciaAntesVenta]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[ExistenciaDespuesVenta]"
+                      cachedDataType="i4"
+                      cachedName="ExistenciaDespuesVenta"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ExistenciaDespuesVenta]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExistenciaDespuesVenta]" />
+                    <inputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].Columns[PrecioUnitario]"
+                      cachedDataType="numeric"
+                      cachedName="PrecioUnitario"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioUnitario]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[TransaccionId]"
+                      dataType="i8"
+                      name="TransaccionId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[FechaTransaccion]"
+                      dataType="dbDate"
+                      name="FechaTransaccion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ClienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="ClienteId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ClienteNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      name="ClienteNombre" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[SegmentoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="SegmentoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[CanalVenta]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="CanalVenta" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Departamento" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Municipio" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ProductoSKU]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ProductoSKU" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ProductoNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      name="ProductoNombre" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Marca]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Marca" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Categoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Categoria" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Subcategoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Subcategoria" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[Fabricante]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Fabricante" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[CantidadVendida]"
+                      dataType="i4"
+                      name="CantidadVendida" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ExistenciaAntesVenta]"
+                      dataType="i4"
+                      name="ExistenciaAntesVenta" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[ExistenciaDespuesVenta]"
+                      dataType="i4"
+                      name="ExistenciaDespuesVenta" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input].ExternalColumns[PrecioUnitario]"
+                      dataType="numeric"
+                      name="PrecioUnitario"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    TransaccionId,
+    FechaTransaccion,
+    ClienteId,
+    ClienteNombre,
+    SegmentoCliente,
+    CanalVenta,
+    Departamento,
+    Municipio,
+    ProductoSKU,
+    ProductoNombre,
+    Marca,
+    Categoria,
+    Subcategoria,
+    Fabricante,
+    CantidadVendida,
+    ExistenciaAntesVenta,
+    ExistenciaDespuesVenta,
+    PrecioUnitario
+FROM dbo.TransaccionesVenta;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{CFA5ACCA-007D-41A6-9110-D312E5231144}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[tcp_34.63.26.98,1433.sgfood_reader]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransaccionId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TransaccionId]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransaccionId]"
+                      name="TransaccionId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaTransaccion]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaTransaccion]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaTransaccion]"
+                      name="FechaTransaccion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClienteId]"
+                      length="20"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteId]"
+                      name="ClienteId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClienteNombre]"
+                      length="120"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClienteNombre]"
+                      name="ClienteNombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[SegmentoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SegmentoCliente]"
+                      length="40"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[SegmentoCliente]"
+                      name="SegmentoCliente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[CanalVenta]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CanalVenta]"
+                      length="30"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[CanalVenta]"
+                      name="CanalVenta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Departamento]"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Departamento]"
+                      name="Departamento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Municipio]"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Municipio]"
+                      name="Municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoSKU]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductoSKU]"
+                      length="30"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoSKU]"
+                      name="ProductoSKU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductoNombre]"
+                      length="120"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductoNombre]"
+                      name="ProductoNombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Marca]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Marca]"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Marca]"
+                      name="Marca"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Categoria]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Categoria]"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Categoria]"
+                      name="Categoria"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Subcategoria]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Subcategoria]"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Subcategoria]"
+                      name="Subcategoria"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fabricante]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Fabricante]"
+                      length="40"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[Fabricante]"
+                      name="Fabricante"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[CantidadVendida]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CantidadVendida]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[CantidadVendida]"
+                      name="CantidadVendida"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExistenciaAntesVenta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExistenciaAntesVenta]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExistenciaAntesVenta]"
+                      name="ExistenciaAntesVenta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExistenciaDespuesVenta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExistenciaDespuesVenta]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExistenciaDespuesVenta]"
+                      name="ExistenciaDespuesVenta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TransaccionId]"
+                      dataType="i8"
+                      name="TransaccionId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaTransaccion]"
+                      dataType="dbDate"
+                      name="FechaTransaccion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="ClienteId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClienteNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      name="ClienteNombre" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SegmentoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="SegmentoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CanalVenta]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="CanalVenta" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Departamento" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Municipio" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductoSKU]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ProductoSKU" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ProductoNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      name="ProductoNombre" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Marca]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Marca" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Categoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Categoria" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Subcategoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Subcategoria" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Fabricante]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="Fabricante" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CantidadVendida]"
+                      dataType="i4"
+                      name="CantidadVendida" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExistenciaAntesVenta]"
+                      dataType="i4"
+                      name="ExistenciaAntesVenta" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExistenciaDespuesVenta]"
+                      dataType="i4"
+                      name="ExistenciaDespuesVenta" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      dataType="numeric"
+                      name="PrecioUnitario"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TransaccionId]"
+                      dataType="i8"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TransaccionId]"
+                      name="TransaccionId" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaTransaccion]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaTransaccion]"
+                      name="FechaTransaccion" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClienteId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClienteId]"
+                      name="ClienteId" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClienteNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClienteNombre]"
+                      name="ClienteNombre" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SegmentoCliente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SegmentoCliente]"
+                      name="SegmentoCliente" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CanalVenta]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CanalVenta]"
+                      name="CanalVenta" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Departamento]"
+                      name="Departamento" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Municipio]"
+                      name="Municipio" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductoSKU]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductoSKU]"
+                      name="ProductoSKU" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductoNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="120"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ProductoNombre]"
+                      name="ProductoNombre" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Marca]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Marca]"
+                      name="Marca" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Categoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Categoria]"
+                      name="Categoria" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Subcategoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Subcategoria]"
+                      name="Subcategoria" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Fabricante]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Fabricante]"
+                      name="Fabricante" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CantidadVendida]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CantidadVendida]"
+                      name="CantidadVendida" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExistenciaAntesVenta]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExistenciaAntesVenta]"
+                      name="ExistenciaAntesVenta" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExistenciaDespuesVenta]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExistenciaDespuesVenta]"
+                      name="ExistenciaDespuesVenta" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Cargar_Stg_SQL.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Cargar_Stg_SQL\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{D4CF832F-3370-4F29-9980-CA8BECC906C0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9B41CF8E-8B87-4D95-8F62-9E42678BA487}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE stg.TransaccionesVenta_SQL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{100EFCDA-7A3E-4828-B60C-CA0B52D0D882}"
+      DTS:From="Package\truncate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\DFT_Cargar_Stg_SQL" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DFT_Cargar_Stg_SQL"
+          TopLeft="45.5,113.5" />
+        <NodeLayout
+          Size="118,42"
+          Id="Package\truncate"
+          TopLeft="74.5,17.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="134.75,59.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Cargar_Stg_SQL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DFT_Cargar_Stg_SQL\OLE DB Source"
+          TopLeft="86,102" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local"
+          TopLeft="90,193" />
+        <EdgeLayout
+          Id="Package\DFT_Cargar_Stg_SQL.Paths[OLE DB Source Output]"
+          TopLeft="162.5,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Cargar_Stg_SQL\CM_SQL_Local">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Cargar_Stg_SQL\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

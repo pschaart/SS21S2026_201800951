@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/9/2026 12:11:36 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PSCHAART"
+  DTS:CreatorName="PSCHAART\pscha"
+  DTS:DTSID="{D0BB2EEA-D085-4B59-AF3E-06EA681119F4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="4106"
+  DTS:ObjectName="04_Cargar_FactVentas"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{B48FF7FD-1259-422C-8AC7-3C2AA3F7A8F1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{A6DD3274-2D9D-4A4D-BCC2-51FE249A179B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9B41CF8E-8B87-4D95-8F62-9E42678BA487}"
+          SQLTask:SqlStatementSource="USE SGFoodDW;&#xA;GO&#xA;&#xA;TRUNCATE TABLE dw.FactVentas;&#xA;GO&#xA;&#xA;/* ==========================================&#xA;   PARTE 1: CARGA BASE DESDE SQL ENRIQUECIDA&#xA;   ========================================== */&#xA;&#xA;;WITH ExcelRaw AS&#xA;(&#xA;    SELECT&#xA;        CAST(Fecha AS DATE) AS FechaTransaccion,&#xA;        LTRIM(RTRIM(CAST(ClienteId AS VARCHAR(20)))) AS ClienteId,&#xA;        LTRIM(RTRIM(CAST(CanalVenta AS VARCHAR(30)))) AS CanalVenta,&#xA;        LTRIM(RTRIM(CAST(Departamento AS VARCHAR(60)))) AS Departamento,&#xA;        LTRIM(RTRIM(CAST(Municipio AS VARCHAR(60)))) AS Municipio,&#xA;        LTRIM(RTRIM(CAST(ProductoSKU AS VARCHAR(30)))) AS ProductoSKU,&#xA;        CantidadVendida,&#xA;        InventarioInicial,&#xA;        InventarioFinal,&#xA;        PrecioUnitario,&#xA;        CostoUnitario,&#xA;        Descuento,&#xA;        ImporteNeto,&#xA;        MargenEstimado&#xA;    FROM stg.TransaccionesVenta_Excel&#xA;),&#xA;ExcelDedup AS&#xA;(&#xA;    SELECT *,&#xA;           ROW_NUMBER() OVER&#xA;           (&#xA;               PARTITION BY&#xA;                   FechaTransaccion, ClienteId, CanalVenta, Departamento, Municipio,&#xA;                   ProductoSKU, CantidadVendida, InventarioInicial, InventarioFinal,&#xA;                   PrecioUnitario, CostoUnitario, Descuento, ImporteNeto, MargenEstimado&#xA;               ORDER BY (SELECT NULL)&#xA;           ) AS rn&#xA;    FROM ExcelRaw&#xA;),&#xA;ExcelBase AS&#xA;(&#xA;    SELECT *&#xA;    FROM ExcelDedup&#xA;    WHERE rn = 1&#xA;),&#xA;SQLBase AS&#xA;(&#xA;    SELECT&#xA;        TransaccionId,&#xA;        CAST(FechaTransaccion AS DATE) AS FechaTransaccion,&#xA;        LTRIM(RTRIM(ClienteId)) AS ClienteId,&#xA;        LTRIM(RTRIM(CanalVenta)) AS CanalVenta,&#xA;        LTRIM(RTRIM(Departamento)) AS Departamento,&#xA;        LTRIM(RTRIM(Municipio)) AS Municipio,&#xA;        LTRIM(RTRIM(ProductoSKU)) AS ProductoSKU,&#xA;        CantidadVendida,&#xA;        ExistenciaAntesVenta,&#xA;        ExistenciaDespuesVenta,&#xA;        PrecioUnitario&#xA;    FROM stg.TransaccionesVenta_SQL&#xA;),&#xA;SQLEnriquecido AS&#xA;(&#xA;    SELECT&#xA;        s.TransaccionId,&#xA;        s.FechaTransaccion,&#xA;        s.ClienteId,&#xA;        s.CanalVenta,&#xA;        s.Departamento,&#xA;        s.Municipio,&#xA;        s.ProductoSKU,&#xA;        s.CantidadVendida,&#xA;        s.ExistenciaAntesVenta,&#xA;        s.ExistenciaDespuesVenta,&#xA;        s.PrecioUnitario,&#xA;&#xA;        x.CostoUnitario,&#xA;        COALESCE(x.Descuento, 0.00) AS Descuento,&#xA;&#xA;        COALESCE(&#xA;            x.ImporteNeto,&#xA;            CAST(s.CantidadVendida * s.PrecioUnitario AS DECIMAL(18,2))&#xA;        ) AS ImporteNeto,&#xA;&#xA;        COALESCE(&#xA;            x.MargenEstimado,&#xA;            CASE&#xA;                WHEN x.CostoUnitario IS NOT NULL&#xA;                THEN CAST(((s.PrecioUnitario - x.CostoUnitario) * s.CantidadVendida) - COALESCE(x.Descuento,0) AS DECIMAL(18,2))&#xA;                ELSE NULL&#xA;            END&#xA;        ) AS MargenEstimado,&#xA;&#xA;        CAST(1 AS BIT) AS FuenteSQL,&#xA;        CAST(CASE WHEN x.ClienteId IS NULL THEN 0 ELSE 1 END AS BIT) AS FuenteExcel&#xA;    FROM SQLBase s&#xA;    LEFT JOIN ExcelBase x&#xA;        ON  s.FechaTransaccion = x.FechaTransaccion&#xA;        AND s.ClienteId = x.ClienteId&#xA;        AND s.CanalVenta = x.CanalVenta&#xA;        AND s.Departamento = x.Departamento&#xA;        AND s.Municipio = x.Municipio&#xA;        AND s.ProductoSKU = x.ProductoSKU&#xA;        AND s.CantidadVendida = x.CantidadVendida&#xA;        AND s.PrecioUnitario = x.PrecioUnitario&#xA;)&#xA;&#xA;INSERT INTO dw.FactVentas&#xA;(&#xA;    TransaccionId,&#xA;    FechaKey,&#xA;    ClienteKey,&#xA;    CanalVentaKey,&#xA;    UbicacionKey,&#xA;    ProductoKey,&#xA;    CantidadVendida,&#xA;    PrecioUnitario,&#xA;    CostoUnitario,&#xA;    Descuento,&#xA;    ImporteNeto,&#xA;    MargenEstimado,&#xA;    ExistenciaAntesVenta,&#xA;    ExistenciaDespuesVenta,&#xA;    FuenteSQL,&#xA;    FuenteExcel&#xA;)&#xA;SELECT&#xA;    s.TransaccionId,&#xA;    df.FechaKey,&#xA;    dc.ClienteKey,&#xA;    dcv.CanalVentaKey,&#xA;    du.UbicacionKey,&#xA;    dp.ProductoKey,&#xA;    s.CantidadVendida,&#xA;    s.PrecioUnitario,&#xA;    s.CostoUnitario,&#xA;    s.Descuento,&#xA;    s.ImporteNeto,&#xA;    s.MargenEstimado,&#xA;    s.ExistenciaAntesVenta,&#xA;    s.ExistenciaDespuesVenta,&#xA;    s.FuenteSQL,&#xA;    s.FuenteExcel&#xA;FROM SQLEnriquecido s&#xA;INNER JOIN dw.DimFecha df&#xA;    ON df.FechaCompleta = s.FechaTransaccion&#xA;INNER JOIN dw.DimCliente dc&#xA;    ON dc.ClienteId = s.ClienteId&#xA;INNER JOIN dw.DimCanalVenta dcv&#xA;    ON dcv.CanalVenta = s.CanalVenta&#xA;INNER JOIN dw.DimUbicacion du&#xA;    ON du.Departamento = s.Departamento&#xA;   AND du.Municipio = s.Municipio&#xA;INNER JOIN dw.DimProducto dp&#xA;    ON dp.ProductoSKU = s.ProductoSKU;&#xA;GO&#xA;&#xA;/* ==========================================&#xA;   PARTE 2: FILAS SOLO DEL EXCEL NO EXISTENTES EN SQL&#xA;   ========================================== */&#xA;&#xA;;WITH ExcelRaw AS&#xA;(&#xA;    SELECT&#xA;        CAST(Fecha AS DATE) AS FechaTransaccion,&#xA;        LTRIM(RTRIM(CAST(ClienteId AS VARCHAR(20)))) AS ClienteId,&#xA;        LTRIM(RTRIM(CAST(CanalVenta AS VARCHAR(30)))) AS CanalVenta,&#xA;        LTRIM(RTRIM(CAST(Departamento AS VARCHAR(60)))) AS Departamento,&#xA;        LTRIM(RTRIM(CAST(Municipio AS VARCHAR(60)))) AS Municipio,&#xA;        LTRIM(RTRIM(CAST(ProductoSKU AS VARCHAR(30)))) AS ProductoSKU,&#xA;        CantidadVendida,&#xA;        InventarioInicial,&#xA;        InventarioFinal,&#xA;        PrecioUnitario,&#xA;        CostoUnitario,&#xA;        Descuento,&#xA;        ImporteNeto,&#xA;        MargenEstimado&#xA;    FROM stg.TransaccionesVenta_Excel&#xA;),&#xA;ExcelDedup AS&#xA;(&#xA;    SELECT *,&#xA;           ROW_NUMBER() OVER&#xA;           (&#xA;               PARTITION BY&#xA;                   FechaTransaccion, ClienteId, CanalVenta, Departamento, Municipio,&#xA;                   ProductoSKU, CantidadVendida, InventarioInicial, InventarioFinal,&#xA;                   PrecioUnitario, CostoUnitario, Descuento, ImporteNeto, MargenEstimado&#xA;               ORDER BY (SELECT NULL)&#xA;           ) AS rn&#xA;    FROM ExcelRaw&#xA;),&#xA;ExcelBase AS&#xA;(&#xA;    SELECT *&#xA;    FROM ExcelDedup&#xA;    WHERE rn = 1&#xA;),&#xA;SQLBase AS&#xA;(&#xA;    SELECT&#xA;        CAST(FechaTransaccion AS DATE) AS FechaTransaccion,&#xA;        LTRIM(RTRIM(ClienteId)) AS ClienteId,&#xA;        LTRIM(RTRIM(CanalVenta)) AS CanalVenta,&#xA;        LTRIM(RTRIM(Departamento)) AS Departamento,&#xA;        LTRIM(RTRIM(Municipio)) AS Municipio,&#xA;        LTRIM(RTRIM(ProductoSKU)) AS ProductoSKU,&#xA;        CantidadVendida,&#xA;        PrecioUnitario&#xA;    FROM stg.TransaccionesVenta_SQL&#xA;)&#xA;&#xA;INSERT INTO dw.FactVentas&#xA;(&#xA;    TransaccionId,&#xA;    FechaKey,&#xA;    ClienteKey,&#xA;    CanalVentaKey,&#xA;    UbicacionKey,&#xA;    ProductoKey,&#xA;    CantidadVendida,&#xA;    PrecioUnitario,&#xA;    CostoUnitario,&#xA;    Descuento,&#xA;    ImporteNeto,&#xA;    MargenEstimado,&#xA;    ExistenciaAntesVenta,&#xA;    ExistenciaDespuesVenta,&#xA;    FuenteSQL,&#xA;    FuenteExcel&#xA;)&#xA;SELECT&#xA;    NULL AS TransaccionId,&#xA;    df.FechaKey,&#xA;    dc.ClienteKey,&#xA;    dcv.CanalVentaKey,&#xA;    du.UbicacionKey,&#xA;    dp.ProductoKey,&#xA;    x.CantidadVendida,&#xA;    x.PrecioUnitario,&#xA;    x.CostoUnitario,&#xA;    COALESCE(x.Descuento, 0.00) AS Descuento,&#xA;    COALESCE(x.ImporteNeto, CAST(x.CantidadVendida * x.PrecioUnitario AS DECIMAL(18,2))) AS ImporteNeto,&#xA;    COALESCE(&#xA;        x.MargenEstimado,&#xA;        CASE&#xA;            WHEN x.CostoUnitario IS NOT NULL&#xA;            THEN CAST(((x.PrecioUnitario - x.CostoUnitario) * x.CantidadVendida) - COALESCE(x.Descuento,0) AS DECIMAL(18,2))&#xA;            ELSE NULL&#xA;        END&#xA;    ) AS MargenEstimado,&#xA;    x.InventarioInicial AS ExistenciaAntesVenta,&#xA;    x.InventarioFinal   AS ExistenciaDespuesVenta,&#xA;    CAST(0 AS BIT) AS FuenteSQL,&#xA;    CAST(1 AS BIT) AS FuenteExcel&#xA;FROM ExcelBase x&#xA;INNER JOIN dw.DimFecha df&#xA;    ON df.FechaCompleta = x.FechaTransaccion&#xA;INNER JOIN dw.DimCliente dc&#xA;    ON dc.ClienteId = x.ClienteId&#xA;INNER JOIN dw.DimCanalVenta dcv&#xA;    ON dcv.CanalVenta = x.CanalVenta&#xA;INNER JOIN dw.DimUbicacion du&#xA;    ON du.Departamento = x.Departamento&#xA;   AND du.Municipio = x.Municipio&#xA;INNER JOIN dw.DimProducto dp&#xA;    ON dp.ProductoSKU = x.ProductoSKU&#xA;WHERE NOT EXISTS&#xA;(&#xA;    SELECT 1&#xA;    FROM SQLBase s&#xA;    WHERE s.FechaTransaccion = x.FechaTransaccion&#xA;      AND s.ClienteId = x.ClienteId&#xA;      AND s.CanalVenta = x.CanalVenta&#xA;      AND s.Departamento = x.Departamento&#xA;      AND s.Municipio = x.Municipio&#xA;      AND s.ProductoSKU = x.ProductoSKU&#xA;      AND s.CantidadVendida = x.CantidadVendida&#xA;      AND s.PrecioUnitario = x.PrecioUnitario&#xA;);&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Tarea Ejecutar SQL"
+          TopLeft="131,64" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

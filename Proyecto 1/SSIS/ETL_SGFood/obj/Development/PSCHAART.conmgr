@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="PSCHAART"
+  DTS:DTSID="{9B41CF8E-8B87-4D95-8F62-9E42678BA487}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=PSCHAART;Initial Catalog=SGFoodDW;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-ETL_SGFood-{9B41CF8E-8B87-4D95-8F62-9E42678BA487}PSCHAART;Use Encryption for Data=Optional;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

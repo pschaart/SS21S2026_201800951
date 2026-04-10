@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/9/2026 12:11:34 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PSCHAART"
+  DTS:CreatorName="PSCHAART\pscha"
+  DTS:DTSID="{278EF2E9-31B2-4C2F-AE7B-BE7DF512D435}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="4106"
+  DTS:ObjectName="03_Cargar_Dimensiones"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{90260457-7E15-4779-863B-18583002B225}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC_Cargar_Dimensiones"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{135C901F-ED8F-4DC5-8D8B-EFE3747541F3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC_Cargar_Dimensiones"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9B41CF8E-8B87-4D95-8F62-9E42678BA487}"
+          SQLTask:SqlStatementSource="USE SGFoodDW;&#xA;GO&#xA;&#xA;/* Reinicio de carga completa */&#xA;TRUNCATE TABLE dw.FactVentas;&#xA;GO&#xA;&#xA;DELETE FROM dw.DimProducto;&#xA;DELETE FROM dw.DimUbicacion;&#xA;DELETE FROM dw.DimCanalVenta;&#xA;DELETE FROM dw.DimCliente;&#xA;GO&#xA;&#xA;DBCC CHECKIDENT ('dw.DimCliente', RESEED, 0);&#xA;DBCC CHECKIDENT ('dw.DimCanalVenta', RESEED, 0);&#xA;DBCC CHECKIDENT ('dw.DimUbicacion', RESEED, 0);&#xA;DBCC CHECKIDENT ('dw.DimProducto', RESEED, 0);&#xA;GO&#xA;&#xA;;WITH ExcelRaw AS&#xA;(&#xA;    SELECT&#xA;        CAST(Fecha AS DATE) AS FechaTransaccion,&#xA;        LTRIM(RTRIM(CAST(ClienteId AS VARCHAR(20)))) AS ClienteId,&#xA;        LTRIM(RTRIM(CAST(ClienteNombre AS VARCHAR(120)))) AS ClienteNombre,&#xA;        LTRIM(RTRIM(CAST(SegmentoCliente AS VARCHAR(40)))) AS SegmentoCliente,&#xA;        LTRIM(RTRIM(CAST(CanalVenta AS VARCHAR(30)))) AS CanalVenta,&#xA;        LTRIM(RTRIM(CAST(Departamento AS VARCHAR(60)))) AS Departamento,&#xA;        LTRIM(RTRIM(CAST(Municipio AS VARCHAR(60)))) AS Municipio,&#xA;        LTRIM(RTRIM(CAST(ProductoSKU AS VARCHAR(30)))) AS ProductoSKU,&#xA;        LTRIM(RTRIM(CAST(ProductoNombre AS VARCHAR(120)))) AS ProductoNombre,&#xA;        LTRIM(RTRIM(CAST(Marca AS VARCHAR(60)))) AS Marca,&#xA;        LTRIM(RTRIM(CAST(Categoria AS VARCHAR(60)))) AS Categoria,&#xA;        LTRIM(RTRIM(CAST(Subcategoria AS VARCHAR(60)))) AS Subcategoria,&#xA;        LTRIM(RTRIM(CAST(Fabricante AS VARCHAR(60)))) AS Fabricante,&#xA;        CantidadVendida,&#xA;        InventarioInicial,&#xA;        InventarioFinal,&#xA;        PrecioUnitario,&#xA;        CostoUnitario,&#xA;        Descuento,&#xA;        ImporteNeto,&#xA;        MargenEstimado&#xA;    FROM stg.TransaccionesVenta_Excel&#xA;),&#xA;ExcelDedup AS&#xA;(&#xA;    SELECT *,&#xA;           ROW_NUMBER() OVER&#xA;           (&#xA;               PARTITION BY&#xA;                   FechaTransaccion, ClienteId, ClienteNombre, SegmentoCliente,&#xA;                   CanalVenta, Departamento, Municipio, ProductoSKU, ProductoNombre,&#xA;                   Marca, Categoria, Subcategoria, Fabricante, CantidadVendida,&#xA;                   InventarioInicial, InventarioFinal, PrecioUnitario, CostoUnitario,&#xA;                   Descuento, ImporteNeto, MargenEstimado&#xA;               ORDER BY (SELECT NULL)&#xA;           ) AS rn&#xA;    FROM ExcelRaw&#xA;),&#xA;ExcelBase AS&#xA;(&#xA;    SELECT&#xA;        ClienteId,&#xA;        ClienteNombre,&#xA;        SegmentoCliente,&#xA;        CanalVenta,&#xA;        Departamento,&#xA;        Municipio,&#xA;        ProductoSKU,&#xA;        ProductoNombre,&#xA;        Marca,&#xA;        Categoria,&#xA;        Subcategoria,&#xA;        Fabricante&#xA;    FROM ExcelDedup&#xA;    WHERE rn = 1&#xA;),&#xA;SQLBase AS&#xA;(&#xA;    SELECT&#xA;        LTRIM(RTRIM(ClienteId)) AS ClienteId,&#xA;        LTRIM(RTRIM(ClienteNombre)) AS ClienteNombre,&#xA;        LTRIM(RTRIM(SegmentoCliente)) AS SegmentoCliente,&#xA;        LTRIM(RTRIM(CanalVenta)) AS CanalVenta,&#xA;        LTRIM(RTRIM(Departamento)) AS Departamento,&#xA;        LTRIM(RTRIM(Municipio)) AS Municipio,&#xA;        LTRIM(RTRIM(ProductoSKU)) AS ProductoSKU,&#xA;        LTRIM(RTRIM(ProductoNombre)) AS ProductoNombre,&#xA;        LTRIM(RTRIM(Marca)) AS Marca,&#xA;        LTRIM(RTRIM(Categoria)) AS Categoria,&#xA;        LTRIM(RTRIM(Subcategoria)) AS Subcategoria,&#xA;        LTRIM(RTRIM(Fabricante)) AS Fabricante&#xA;    FROM stg.TransaccionesVenta_SQL&#xA;),&#xA;AllRows AS&#xA;(&#xA;    SELECT * FROM SQLBase&#xA;    UNION&#xA;    SELECT * FROM ExcelBase&#xA;)&#xA;&#xA;/* DimCliente */&#xA;INSERT INTO dw.DimCliente (ClienteId, ClienteNombre, SegmentoCliente)&#xA;SELECT DISTINCT&#xA;    ClienteId,&#xA;    ClienteNombre,&#xA;    SegmentoCliente&#xA;FROM AllRows&#xA;WHERE ClienteId IS NOT NULL&#xA;  AND ClienteNombre IS NOT NULL&#xA;  AND SegmentoCliente IS NOT NULL;&#xA;GO&#xA;&#xA;;WITH ExcelRaw AS&#xA;(&#xA;    SELECT LTRIM(RTRIM(CAST(CanalVenta AS VARCHAR(30)))) AS CanalVenta&#xA;    FROM stg.TransaccionesVenta_Excel&#xA;),&#xA;ExcelDedup AS&#xA;(&#xA;    SELECT CanalVenta,&#xA;           ROW_NUMBER() OVER (PARTITION BY CanalVenta ORDER BY (SELECT NULL)) AS rn&#xA;    FROM ExcelRaw&#xA;),&#xA;ExcelBase AS&#xA;(&#xA;    SELECT CanalVenta&#xA;    FROM ExcelDedup&#xA;    WHERE rn = 1&#xA;),&#xA;SQLBase AS&#xA;(&#xA;    SELECT LTRIM(RTRIM(CanalVenta)) AS CanalVenta&#xA;    FROM stg.TransaccionesVenta_SQL&#xA;),&#xA;AllRows AS&#xA;(&#xA;    SELECT CanalVenta FROM SQLBase&#xA;    UNION&#xA;    SELECT CanalVenta FROM ExcelBase&#xA;)&#xA;&#xA;/* DimCanalVenta */&#xA;INSERT INTO dw.DimCanalVenta (CanalVenta)&#xA;SELECT DISTINCT CanalVenta&#xA;FROM AllRows&#xA;WHERE CanalVenta IS NOT NULL;&#xA;GO&#xA;&#xA;;WITH ExcelRaw AS&#xA;(&#xA;    SELECT&#xA;        LTRIM(RTRIM(CAST(Departamento AS VARCHAR(60)))) AS Departamento,&#xA;        LTRIM(RTRIM(CAST(Municipio AS VARCHAR(60)))) AS Municipio&#xA;    FROM stg.TransaccionesVenta_Excel&#xA;),&#xA;ExcelDedup AS&#xA;(&#xA;    SELECT Departamento, Municipio,&#xA;           ROW_NUMBER() OVER&#xA;           (&#xA;               PARTITION BY Departamento, Municipio&#xA;               ORDER BY (SELECT NULL)&#xA;           ) AS rn&#xA;    FROM ExcelRaw&#xA;),&#xA;ExcelBase AS&#xA;(&#xA;    SELECT Departamento, Municipio&#xA;    FROM ExcelDedup&#xA;    WHERE rn = 1&#xA;),&#xA;SQLBase AS&#xA;(&#xA;    SELECT&#xA;        LTRIM(RTRIM(Departamento)) AS Departamento,&#xA;        LTRIM(RTRIM(Municipio)) AS Municipio&#xA;    FROM stg.TransaccionesVenta_SQL&#xA;),&#xA;AllRows AS&#xA;(&#xA;    SELECT Departamento, Municipio FROM SQLBase&#xA;    UNION&#xA;    SELECT Departamento, Municipio FROM ExcelBase&#xA;)&#xA;&#xA;/* DimUbicacion */&#xA;INSERT INTO dw.DimUbicacion (Departamento, Municipio)&#xA;SELECT DISTINCT Departamento, Municipio&#xA;FROM AllRows&#xA;WHERE Departamento IS NOT NULL&#xA;  AND Municipio IS NOT NULL;&#xA;GO&#xA;&#xA;;WITH ExcelRaw AS&#xA;(&#xA;    SELECT&#xA;        LTRIM(RTRIM(CAST(ProductoSKU AS VARCHAR(30)))) AS ProductoSKU,&#xA;        LTRIM(RTRIM(CAST(ProductoNombre AS VARCHAR(120)))) AS ProductoNombre,&#xA;        LTRIM(RTRIM(CAST(Marca AS VARCHAR(60)))) AS Marca,&#xA;        LTRIM(RTRIM(CAST(Categoria AS VARCHAR(60)))) AS Categoria,&#xA;        LTRIM(RTRIM(CAST(Subcategoria AS VARCHAR(60)))) AS Subcategoria,&#xA;        LTRIM(RTRIM(CAST(Fabricante AS VARCHAR(60)))) AS Fabricante&#xA;    FROM stg.TransaccionesVenta_Excel&#xA;),&#xA;ExcelDedup AS&#xA;(&#xA;    SELECT *,&#xA;           ROW_NUMBER() OVER&#xA;           (&#xA;               PARTITION BY ProductoSKU, ProductoNombre, Marca, Categoria, Subcategoria, Fabricante&#xA;               ORDER BY (SELECT NULL)&#xA;           ) AS rn&#xA;    FROM ExcelRaw&#xA;),&#xA;ExcelBase AS&#xA;(&#xA;    SELECT&#xA;        ProductoSKU,&#xA;        ProductoNombre,&#xA;        Marca,&#xA;        Categoria,&#xA;        Subcategoria,&#xA;        Fabricante&#xA;    FROM ExcelDedup&#xA;    WHERE rn = 1&#xA;),&#xA;SQLBase AS&#xA;(&#xA;    SELECT&#xA;        LTRIM(RTRIM(ProductoSKU)) AS ProductoSKU,&#xA;        LTRIM(RTRIM(ProductoNombre)) AS ProductoNombre,&#xA;        LTRIM(RTRIM(Marca)) AS Marca,&#xA;        LTRIM(RTRIM(Categoria)) AS Categoria,&#xA;        LTRIM(RTRIM(Subcategoria)) AS Subcategoria,&#xA;        LTRIM(RTRIM(Fabricante)) AS Fabricante&#xA;    FROM stg.TransaccionesVenta_SQL&#xA;),&#xA;AllRows AS&#xA;(&#xA;    SELECT * FROM SQLBase&#xA;    UNION&#xA;    SELECT * FROM ExcelBase&#xA;)&#xA;&#xA;/* DimProducto */&#xA;INSERT INTO dw.DimProducto&#xA;(&#xA;    ProductoSKU,&#xA;    ProductoNombre,&#xA;    Marca,&#xA;    Categoria,&#xA;    Subcategoria,&#xA;    Fabricante&#xA;)&#xA;SELECT DISTINCT&#xA;    ProductoSKU,&#xA;    ProductoNombre,&#xA;    Marca,&#xA;    Categoria,&#xA;    Subcategoria,&#xA;    Fabricante&#xA;FROM AllRows&#xA;WHERE ProductoSKU IS NOT NULL&#xA;  AND ProductoNombre IS NOT NULL;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\EXEC_Cargar_Dimensiones"
+          TopLeft="105,62" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

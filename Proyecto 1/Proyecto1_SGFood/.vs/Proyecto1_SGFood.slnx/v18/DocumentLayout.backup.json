@@ -1,0 +1,106 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\Proyecto1_SGFood\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{20573675-60AA-F01E-5D53-77C50E7CB509}|..\\SSIS\\ETL_SGFood\\ETL_SGFood.dtproj|C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\00_Master.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7334D5D-848B-0CD9-6D5E-2BC77F81DEF0}|..\\SSAS\\ProyectoMultidimensional1\\ProyectoMultidimensional1.dwproj|C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSAS\\ProyectoMultidimensional1\\PSCHAART.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7334D5D-848B-0CD9-6D5E-2BC77F81DEF0}|..\\SSAS\\ProyectoMultidimensional1\\ProyectoMultidimensional1.dwproj|C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSAS\\ProyectoMultidimensional1\\PSCHAART.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20573675-60AA-F01E-5D53-77C50E7CB509}|..\\SSIS\\ETL_SGFood\\ETL_SGFood.dtproj|C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\01_Stg_SQL.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20573675-60AA-F01E-5D53-77C50E7CB509}|..\\SSIS\\ETL_SGFood\\ETL_SGFood.dtproj|C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\03_Cargar_Dimensiones.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 316,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "01_Stg_SQL.dtsx [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\01_Stg_SQL.dtsx",
+              "RelativeDocumentMoniker": "..\\SSIS\\ETL_SGFood\\01_Stg_SQL.dtsx",
+              "ToolTip": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\01_Stg_SQL.dtsx [Dise\u00F1o]",
+              "RelativeToolTip": "..\\SSIS\\ETL_SGFood\\01_Stg_SQL.dtsx [Dise\u00F1o]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-04-10T03:36:32.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "03_Cargar_Dimensiones.dtsx [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\03_Cargar_Dimensiones.dtsx",
+              "RelativeDocumentMoniker": "..\\SSIS\\ETL_SGFood\\03_Cargar_Dimensiones.dtsx",
+              "ToolTip": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\03_Cargar_Dimensiones.dtsx [Dise\u00F1o]",
+              "RelativeToolTip": "..\\SSIS\\ETL_SGFood\\03_Cargar_Dimensiones.dtsx [Dise\u00F1o]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-04-10T03:36:29.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "00_Master.dtsx [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\00_Master.dtsx",
+              "RelativeDocumentMoniker": "..\\SSIS\\ETL_SGFood\\00_Master.dtsx",
+              "ToolTip": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSIS\\ETL_SGFood\\00_Master.dtsx [Dise\u00F1o]",
+              "RelativeToolTip": "..\\SSIS\\ETL_SGFood\\00_Master.dtsx [Dise\u00F1o]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-04-10T01:27:21.842Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PSCHAART.cube [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSAS\\ProyectoMultidimensional1\\PSCHAART.cube",
+              "RelativeDocumentMoniker": "..\\SSAS\\ProyectoMultidimensional1\\PSCHAART.cube",
+              "ToolTip": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSAS\\ProyectoMultidimensional1\\PSCHAART.cube [Dise\u00F1o]",
+              "RelativeToolTip": "..\\SSAS\\ProyectoMultidimensional1\\PSCHAART.cube [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-10T01:25:54.416Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PSCHAART.dsv [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSAS\\ProyectoMultidimensional1\\PSCHAART.dsv",
+              "RelativeDocumentMoniker": "..\\SSAS\\ProyectoMultidimensional1\\PSCHAART.dsv",
+              "ToolTip": "C:\\Users\\pscha\\Desktop\\Semin 2\\SS21S2026_201800951\\Proyecto 1\\SSAS\\ProyectoMultidimensional1\\PSCHAART.dsv [Dise\u00F1o]",
+              "RelativeToolTip": "..\\SSAS\\ProyectoMultidimensional1\\PSCHAART.dsv [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-10T01:25:45.341Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 84,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
